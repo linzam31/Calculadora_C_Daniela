@@ -1,0 +1,132 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1{
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+#calculadora{
+    background: rgb(69, 150, 255);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    width: 300px;
+}
+
+#operaciones{
+    background: #161616;
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+ ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.numero{
+    background: #2e1e8a;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+
+    
+    transition: all 0.3s ease;
+}
+
+.numero:hover{
+    background: #4330af;
+    color: white;
+    transform: scale(1.05);
+}
+.simbolo{
+    background: #001e72;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.simbolo:hover{
+    background: #223d86;
+    color: white;
+    transform: scale(1.05);
+}
+.decimal{
+    background: #001e72;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;  
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.decimal:hover{
+    background: #223d86;
+    color: white;
+    transform: scale(1.05);
+}
+.igual{
+    background: #001e72;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.igual:hover{
+    background: #223d86;
+    color: white;
+    transform: scale(1.05);
+}
+
+#borrar{
+    margin-top: 15px;
+    background: #640e17;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+#borrar:hover{
+    background: #880c0c;
+    transform: scale(1.05);
+}
