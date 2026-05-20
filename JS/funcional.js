@@ -22,6 +22,7 @@ let m = {
 
     oprimirtecla : function(tecla){
         p.accion = tecla.target.getAttribute("class");
+        p.digito = tecla.target.innerHTML;
         m.calculadora(p.accion);
 
     },
@@ -32,25 +33,32 @@ let m = {
         {
 
             case "numero":
-                console.log("numero");
-                break;
+                //console.log("numero");
+                if (p.operaciones.innerHTML == 0){
+                    p.operaciones.innerHTML = p.digito;
+                } else{
+                    p.operaciones.innerHTML += p.digito;
+                }
+            break;
 
-                case "simbolo":
-                console.log("simbolo");
-                break;
+            case "simbolo":
+            p.operaciones.innerHTML += p.digito;
+            break;
 
-                case "decimal":
-                console.log("decimal");
-                break;
+            case "decimal":
+                p.operaciones.innerHTML += p.digito;
+            break;
 
-                case "igual":
-                console.log("igual");
-                break;
+            case "igual":
+                p.operaciones.innerHTML = eval(p.operaciones.innerHTML);
+            break;
         
         }
 
-}
+},
+    borrarcalculadora : function(){
+        p.operaciones.innerHTML = 0;
 
+    }
 }
-
 m.inicio();
