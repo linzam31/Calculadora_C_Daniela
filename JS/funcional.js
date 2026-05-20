@@ -17,15 +17,43 @@ let m = {
         for(let i = 0; i < p.teclas.length; i++){
             p.teclas[i].addEventListener("click", m.oprimirtecla);
         }
-       
+         document.addEventListener("keydown", m.oprimirteclateclado);
     },
 
     oprimirtecla : function(tecla){
         p.accion = tecla.target.getAttribute("class");
-        p.digito = tecla.target.innerHTML; 
+        p.digito = tecla.target.innerHTML;
         m.calculadora(p.accion);
 
     },
+
+    oprimirteclateclado : function(evento){
+    let tecla = evento.key;
+
+    if(!isNaN(tecla) && tecla !== ' '){
+        p.accion = "numero";
+        p.digito = tecla;
+        m.calculadora(p.accion);
+    }
+    else if(['+', '-', '*', '/'].includes(tecla)){
+        p.accion = "simbolo";
+        p.digito = tecla;
+        m.calculadora(p.accion);
+    }
+    else if(tecla === '.'){
+        p.accion = "decimal";
+        p.digito = ".";
+        m.calculadora(p.accion);
+    }
+    else if(tecla === 'Enter' || tecla === '='){
+        evento.preventDefault();
+        p.accion = "igual";
+        m.calculadora(p.accion);
+    }
+    else if(tecla === 'Backspace' || tecla === 'Escape'){
+        m.borrarcalculadora();
+    }
+},
 
     calculadora : function(accion){
 
@@ -41,7 +69,14 @@ let m = {
             break;
 
             case "simbolo":
-            p.operaciones.innerHTML += p.digito;
+            let ultimoCaracter = p.operaciones.innerHTML.slice(-1);
+            let operadores = ['+', '-', '*', '/'];
+
+            if (operadores.includes(ultimoCaracter)) {
+                p.operaciones.innerHTML = p.operaciones.innerHTML.slice(0, -1) + p.digito;
+            } else {
+                p.operaciones.innerHTML += p.digito;
+            }
             break;
 
             case "decimal":
@@ -51,7 +86,7 @@ let m = {
             case "igual":
                 p.operaciones.innerHTML = eval(p.operaciones.innerHTML);
             break;
-        
+       
         }
 },
     borrarcalculadora : function(){
