@@ -84,7 +84,11 @@ let m = {
             break;
 
             case "igual":
-                p.operaciones.innerHTML = eval(p.operaciones.innerHTML);
+                if(p.operaciones.innerHTML.includes("/0")){
+                    p.operaciones.innerHTML = "Error"
+                }else{
+                    p.operaciones.innerHTML = eval(p.operaciones.innerHTML)
+                }
             break;
        
         }
