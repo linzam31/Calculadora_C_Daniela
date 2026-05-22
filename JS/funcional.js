@@ -13,103 +13,124 @@ let p = {
 //Crear los métodos del objeto
 
 let m = {
-    inicio : function(){
-        for(let i = 0; i < p.teclas.length; i++){
+    inicio: function () {
+        for (let i = 0; i < p.teclas.length; i++) {
             p.teclas[i].addEventListener("click", m.oprimirtecla);
         }
-         document.addEventListener("keydown", m.oprimirteclateclado);
+        document.addEventListener("keydown", m.oprimirteclateclado);
     },
 
-    oprimirtecla : function(tecla){
+    oprimirtecla: function (tecla) {
         p.accion = tecla.target.getAttribute("class");
         p.digito = tecla.target.innerHTML;
         m.calculadora(p.accion);
 
     },
 
-    oprimirteclateclado : function(evento){
-    let tecla = evento.key;
+    oprimirteclateclado: function (evento) {
+        let tecla = evento.key;
 
-    if(!isNaN(tecla) && tecla !== ' '){
-        p.accion = "numero";
-        p.digito = tecla;
-        m.calculadora(p.accion);
-    }
-    else if(['+', '-', '*', '/'].includes(tecla)){
-        p.accion = "simbolo";
-        p.digito = tecla;
-        m.calculadora(p.accion);
-    }
-    else if(tecla === '.'){
-        p.accion = "decimal";
-        p.digito = ".";
-        m.calculadora(p.accion);
-    }
-    else if(tecla === 'Enter' || tecla === '='){
-        evento.preventDefault();
-        p.accion = "igual";
-        m.calculadora(p.accion);
-    }
-    else if(tecla === 'Backspace' || tecla === 'Escape'){
-        m.borrarcalculadora();
-    }
-},
+        if (!isNaN(tecla) && tecla !== ' ') {
+            p.accion = "numero";
+            p.digito = tecla;
+            m.calculadora(p.accion);
+        }
+        else if (['+', '-', '*', '/'].includes(tecla)) {
+            p.accion = "simbolo";
+            p.digito = tecla;
+            m.calculadora(p.accion);
+        }
+        else if (tecla === '.') {
+            p.accion = "decimal";
+            p.digito = ".";
+            m.calculadora(p.accion);
+        }
+        else if (tecla === 'Enter' || tecla === '=') {
+            evento.preventDefault();
+            p.accion = "igual";
+            m.calculadora(p.accion);
+        }
+        else if (tecla === 'Backspace' || tecla === 'Escape') {
+            m.borrarcalculadora();
+        }
+    },
 
-    calculadora : function(accion){
+    calculadora: function (accion) {
 
-        switch(accion)
-        {
+        switch (accion) {
 
             case "numero":
-                if (p.operaciones.innerHTML == 0){
+                if (p.operaciones.innerHTML == 0) {
                     p.operaciones.innerHTML = p.digito;
-                } else{
+                } else {
                     p.operaciones.innerHTML += p.digito;
                 }
-            break;
+                break;
 
             case "simbolo":
 
-                if(p.digito == "√"){
+                if (p.digito == "√") {
 
                     let numero = parseFloat(p.operaciones.innerHTML);
 
-                    if(numero < 0){
+                    if (numero < 0) {
                         p.operaciones.innerHTML = "Error";
-                    }else{
+                    } else {
                         p.operaciones.innerHTML = Math.sqrt(numero);
                     }
 
                     break;
                 }
 
-                let SimboloFinal = p.operaciones.innerHTML.slice(-1);
-                let operadores = ['+', '-', '*', '/'];
+                if (p.digito == "sin") {
 
-                if (operadores.includes(imboloFinal)) {
-                    p.operaciones.innerHTML =
-                    p.operaciones.innerHTML.slice(0, -1) + p.digito;
-                } else {
-                    p.operaciones.innerHTML += p.digito;
+                    let numero = parseFloat(p.operaciones.innerHTML);
+
+                    p.operaciones.innerHTML = Math.sin(numero);
+
+                    break;
                 }
 
-            break;
+                if (p.digito == "cos") {
+
+                    let numero = parseFloat(p.operaciones.innerHTML);
+
+                    p.operaciones.innerHTML = Math.cos(numero);
+
+                    break;
+                }
+
+                let simboloFinal = p.operaciones.innerHTML.slice(-1);
+                let operadores = ['+', '-', '*', '/'];
+
+                if (operadores.includes(simboloFinal)) {
+
+                    p.operaciones.innerHTML =
+                        p.operaciones.innerHTML.slice(0, -1) + p.digito;
+
+                } else {
+
+                    p.operaciones.innerHTML += p.digito;
+
+                }
+
+                break;
 
             case "decimal":
                 p.operaciones.innerHTML += p.digito;
-            break;
+                break;
 
             case "igual":
-                if(p.operaciones.innerHTML.includes("/0")){
+                if (p.operaciones.innerHTML.includes("/0")) {
                     p.operaciones.innerHTML = "Error"
-                }else{
+                } else {
                     p.operaciones.innerHTML = eval(p.operaciones.innerHTML)
                 }
-            break;
-       
+                break;
+
         }
-},
-    borrarcalculadora : function(){
+    },
+    borrarcalculadora: function () {
         p.operaciones.innerHTML = 0;
 
     }
