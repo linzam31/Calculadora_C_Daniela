@@ -94,9 +94,7 @@ let m = {
                 if (p.digito == "cos") {
 
                     let numero = parseFloat(p.operaciones.innerHTML);
-
                     p.operaciones.innerHTML = Math.cos(numero);
-
                     break;
                 }
 
