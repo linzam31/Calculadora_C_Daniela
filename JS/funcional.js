@@ -1,5 +1,3 @@
-//Crear las propiedades del objeto
-
 let p = {
     teclas: document.querySelectorAll("#calculadora ul li"),
     accion: null,
@@ -7,7 +5,6 @@ let p = {
     operaciones: document.querySelector("#operaciones")
 }
 
-//Crear los métodos del objeto
 
 let m = {
 
@@ -101,7 +98,6 @@ let m = {
 
             case "simbolo":
 
-                // RAIZ
                 if(p.digito == "√"){
 
                     let numero =
@@ -114,7 +110,6 @@ let m = {
 
                 }
 
-                // SENO
                 if(p.digito == "sin"){
 
                     let numero =
@@ -127,7 +122,6 @@ let m = {
 
                 }
 
-                // COSENO
                 if(p.digito == "cos"){
 
                     let numero =
@@ -140,7 +134,6 @@ let m = {
 
                 }
 
-                // OPERADORES
                 let ultimoCaracter =
                 p.operaciones.innerHTML.slice(-1);
 
