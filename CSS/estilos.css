@@ -98,7 +98,7 @@ h1{
     transform: scale(1.05);
 }
 .igual{
-    background: #001e72;
+    background: #ffae00da;
     color: white;
     padding: 20px;
     text-align: center;
@@ -110,14 +110,14 @@ h1{
 }
 
 .igual:hover{
-    background: #223d86;
+    background: #ffc13b;
     color: white;
     transform: scale(1.05);
 }
 
 #borrar{
     margin-top: 15px;
-    background: #640e17;
+    background: #86131e;
     color: white;
     padding: 12px 20px;
     border-radius: 15px;
